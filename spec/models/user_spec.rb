@@ -73,7 +73,7 @@ describe User do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
       addresses.each do |invalid_address|
         @user.email = invalid_address
-        @user.should_not be_valid
+        expect(@user).not_to be_valid
       end
     end
   end
@@ -83,7 +83,7 @@ describe User do
       addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
       addresses.each do |valid_address|
         @user.email = valid_address
-        @user.should be_valid
+        expect(@user).to be_valid
       end
     end
   end
@@ -112,7 +112,7 @@ describe User do
     it "should be saved as all lower case" do
       @user.email = mixed_case_email
       @user.save
-      @user.reload.email.should == mixed_case_email.downcase
+      expect(@user.reload.email).to eq mixed_case_email.downcase
     end
   end
 
@@ -136,13 +136,13 @@ describe User do
     let(:found_user) { User.find_by_email(@user.email) }
 
     describe "with valid password" do
-      it { should == found_user.authenticate(@user.password) }
+      it { should eq found_user.authenticate(@user.password) }
     end
 
     describe "with invalid password" do
       let(:user_for_invalid_password) { found_user.authenticate("invalid") }
-      it { should_not == user_for_invalid_password }
-      specify { user_for_invalid_password.should be_false }
+      it { should_not eq user_for_invalid_password }
+      specify { expect(user_for_invalid_password).to be_false }
     end
   end
 
