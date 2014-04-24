@@ -24,8 +24,8 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
-  it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:admin) }
   it { should respond_to(:microposts) }
   it { should respond_to(:feed) }
   it { should respond_to(:relationships) }
@@ -43,14 +43,6 @@ describe User do
     before { @user.toggle!(:admin) }
 
     it { should be_admin }
-  end
-
-  describe "accessible attributes" do
-    it "should not allow access to admin" do
-      expect do
-        User.new(admin: true)
-      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end
   end
 
   describe "when name is not present" do
@@ -133,7 +125,7 @@ describe User do
 
   describe "return value of authenticate method" do
     before { @user.save }
-    let(:found_user) { User.find_by_email(@user.email) }
+    let(:found_user) { User.find_by(email: @user.email) }
 
     describe "with valid password" do
       it { should eq found_user.authenticate(@user.password) }
@@ -166,14 +158,15 @@ describe User do
     end
 
     it "should have the right microposts in the right order" do
-      @user.microposts.should == [newer_micropost, older_micropost]
+      expect(@user.microposts).to eq [newer_micropost, older_micropost]
     end
 
     it "should destroy associated microposts" do
-      microposts = @user.microposts
+      microposts = @user.microposts.to_a
       @user.destroy
+      expect(microposts).not_to be_empty
       microposts.each do |micropost|
-        Micropost.find_by_id(micropost.id).should be_nil
+        expect(Micropost.where(id: micropost.id)).to be_empty
       end
     end
 
