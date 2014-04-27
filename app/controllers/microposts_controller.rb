@@ -15,10 +15,11 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    redirect_back_or root_url
+    redirect_to root_url
   end
 
   private
+
     def micropost_params
       params.require(:micropost).permit(:content)
     end
