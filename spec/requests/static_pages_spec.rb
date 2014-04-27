@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "StaticPages" do
+describe "Static pages" do
   subject { page }
 
   shared_examples_for "all static pages" do
@@ -33,7 +33,6 @@ describe "StaticPages" do
 
       describe "follower/following counts" do
         let(:other_user) { FactoryGirl.create(:user) }
-
         before do
           other_user.follow!(user)
           visit root_path
