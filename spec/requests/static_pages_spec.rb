@@ -44,6 +44,26 @@ describe "Static pages" do
     end
   end
 
+  describe "Practice page" do
+    before { visit practice_path }
+    let(:heading) { 'Practice' }
+    let(:page_title) { 'Practice' }
+
+    it_should_behave_like "all static pages"
+
+    describe "with valid code" do
+      let(:code) { "practice_code" }
+      let(:evaluate) { "Evaluate" }
+      before do
+        fill_in code, with: "puts 'Hello World!'"
+        click_button evaluate
+      end
+
+      it { should have_content("Hello World!\n") }
+    end
+      
+  end
+
   describe "Help page" do
     before { visit help_path }
     let(:heading) { 'Help' }
@@ -82,5 +102,7 @@ describe "Static pages" do
     expect(page).to have_title(full_title('Sign up'))
     click_link "sample app"
     expect(page).to have_title(full_title(''))
+    click_link "Practice"
+    expect(page).to have_title(full_title('Practice'))
   end
 end

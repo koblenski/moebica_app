@@ -9,6 +9,7 @@ gem 'bcrypt-ruby', '~> 3.1.5'
 gem 'faker', '~> 1.3.0'
 gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+gem 'evalso'
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.9'
@@ -43,6 +44,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '2.5.0'
 gem 'coffee-rails', '~> 4.0.1'
 gem 'jquery-rails', '~> 3.1.0'
+gem 'autosize-rails'
+gem 'google-code-prettify-rails'
 gem 'turbolinks', '~> 2.2.2'
 gem 'jbuilder', '~> 2.0.6'
 
