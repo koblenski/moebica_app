@@ -2,6 +2,8 @@ require 'evalso'
 
 class PracticeController < ApplicationController
 
+  respond_to :html, :js
+
   def new
     @practice = Practice.new
     @code_output = "JSON output will appear here"
@@ -12,7 +14,9 @@ class PracticeController < ApplicationController
     eval_reply = Evalso.run(language: :ruby, code: practice_params[:code])
     @practice.code = eval_reply.code
     @code_output = eval_reply.stdout
-    render 'new'
+    respond_with @practice do |format|
+      format.html { render 'new' }
+    end
   end
 
   private

@@ -7,7 +7,7 @@
     <div class="container bp-push-60">
       <div class="row">
         <div class="span6">
-          <%= form_for(@practice, url: practice_url) do |f| %>
+          <%= form_for(@practice, url: practice_url, remote: true) do |f| %>
             <div class="field">
               <% if @code.nil? %>
                 <%= f.text_area :code, tabindex: "1", spellcheck: "false",
@@ -24,12 +24,16 @@
         <div class="span6">
           <pre id="result" class="stupidly-plain"><%= @code_output %></pre>
           <pre id="example_code" class="prettyprint lang-rb">
-# Say hello to 'name'
-def say_hello(name)
-  puts "Hello, #{name}"
+class Speak
+  # Say hello to 'name'
+  def self.say_hello(name)
+    @name = name
+    params = {greeting: "Hello", name: name}
+    puts "#{params[:greeting]}, #{@name}"
+  end
 end
 
-say_hello("Sam")
+Speak.say_hello("Sam")
           </pre>
         </div>
       </div>
