@@ -14,6 +14,7 @@ gem 'evalso'
 group :development, :test do
   gem 'sqlite3', '~> 1.3.9'
   gem 'rspec-rails', '~> 2.14.2'
+  gem 'minitest-rails'
   # The following optional lines are part of the advanced setup.
   gem 'guard-rspec', '~> 4.2.8'
   gem 'spork-rails', '~> 4.0.0'
@@ -23,7 +24,7 @@ end
 
 group :test do
   gem 'selenium-webdriver', '~> 2.41.0'
-  gem 'capybara', '~> 2.2.1'
+  gem 'capybara', '~> 2.1.0'
   gem 'factory_girl_rails', '~> 4.4.1'
   # gem 'cucumber-rails', '1.3.0', :require => false
   gem 'database_cleaner', github: 'bmabey/database_cleaner'

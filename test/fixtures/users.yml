@@ -2,13 +2,18 @@
 
 one:
   name: Person 1
-  email: person__1@example.com
+  email: person_1@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   admin: false
 
 two:
   name: Person 2
-  email: person__2@example.com
+  email: person_2@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   admin: true
 
+admin:
+  name: Admin
+  email: admin@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  admin: true

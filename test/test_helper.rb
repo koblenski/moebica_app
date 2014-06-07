@@ -24,3 +24,20 @@ class ActiveSupport::TestCase
     login_as :one if defined? session
   end
 end
+
+class ActionController::TestCase
+
+end
+
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+
+  def sign_in(user)
+    post_via_redirect sessions_path, { email: user.email, password: user.password }
+  end
+
+  def assert_error_message(message)
+    assert_select 'div.alert.alert-error', message
+  end
+
+end
