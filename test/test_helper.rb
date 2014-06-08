@@ -12,25 +12,17 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  def login_as(user)
-    session[:user_id] = users(user).id
-  end
-
-  def logout
-    session.delete :user_id
-  end
-
   def setup
-    login_as :one if defined? session
+    sign_in users(:one) if defined? session
   end
 end
 
 class ActionController::TestCase
-
+  include SessionsHelper
 end
 
 class ActionDispatch::IntegrationTest
-  include Capybara::DSL
+  fixtures :users, :microposts
 
   def sign_in(user)
     post_via_redirect sessions_path, { email: user.email, password: user.password }

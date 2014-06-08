@@ -2,9 +2,8 @@ require 'test_helper'
 
 class AuthenticationTest < ActionDispatch::IntegrationTest
   include ApplicationHelper
-  fixtures :users, :microposts
 
-  test "signin page" do
+  test "signin page elements" do
     get signin_path
 
     assert_select 'h1', 'Sign in'
@@ -25,7 +24,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert.alert-error', false
   end
 
-  test "with valid information" do
+  test "signin with valid information and signout" do
     user = users(:one)
     user.password = "foobar"
     sign_in user
