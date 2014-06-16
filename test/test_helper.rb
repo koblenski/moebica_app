@@ -4,6 +4,7 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
+  include SessionsHelper
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   #
@@ -30,6 +31,10 @@ class ActionDispatch::IntegrationTest
 
   def assert_error_message(message)
     assert_select 'div.alert.alert-error', message
+  end
+
+  def assert_success(message)
+    assert_select 'div.alert.alert-success', message
   end
 
 end

@@ -17,3 +17,11 @@ admin:
   email: admin@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   admin: true
+
+<% 1.upto(30) do |i| %>
+user_<%= i %>:
+  name: Example <%= i %>
+  email: example_<%= i %>@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  admin: false
+<% end %>

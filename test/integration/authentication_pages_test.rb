@@ -80,7 +80,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     post microposts_path
     assert_redirected_to signin_path
 
-    delete micropost_path(microposts(:one))
+    delete micropost_path(microposts(:first))
     assert_redirected_to signin_path
   end
 
