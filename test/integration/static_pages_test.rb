@@ -10,14 +10,14 @@ class StaticPagesTest < ActionDispatch::IntegrationTest
 
   test "Home page for signed-in users" do
     get root_path
-    assert_static_page 'Welcome to the Sample App', ''
+    assert_static_page 'Welcome to Moebica', ''
     assert_select 'title', text: full_title('Home'), count: 0
     assert_select 'a[href=?]', about_path,    'About'
     assert_select 'a[href=?]', help_path,     'Help'
     assert_select 'a[href=?]', contact_path,  'Contact'
     assert_select 'a[href=?]', root_path,     'Home'
     assert_select 'a[href=?]', signup_path,   'Sign up now!'
-    assert_select 'a[href=?]', root_path,     'sample app'
+    assert_select 'a[href=?]', root_path,     'moebica'
     assert_select 'a[href=?]', practice_path, 'Practice'
 
     user = users(:one)
