@@ -7,6 +7,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    ace-rails-ap (2.0.1)
     actionmailer (4.1.1)
       actionpack (= 4.1.1)
       actionview (= 4.1.1)
@@ -125,6 +126,10 @@ GEM
       mini_portile (= 0.6.0)
     pg (0.15.1-x86-mingw32)
     polyglot (0.3.4)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     pry (0.9.12.6-x86-mingw32)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -191,6 +196,7 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
     slop (3.5.0)
+    spork (1.0.0rc4)
     spork (1.0.0rc4-x86-mingw32)
       win32-process
     spork-rails (4.0.0)
@@ -234,6 +240,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  ace-rails-ap
   autosize-rails
   bcrypt-ruby (~> 3.1.5)
   bootstrap-sass (~> 3.1.1.1)

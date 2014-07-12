@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require google-code-prettify-rails/prettify
+//= require ace/ace
 //= require_tree .

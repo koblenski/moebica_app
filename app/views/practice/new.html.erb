@@ -6,14 +6,14 @@
     <div class="container bp-push-60">
       <div class="row">
         <div class="span6">
+          <% if @code.nil? %>
+            <div id="editor"># Type code here, then click Evaluate.</div>
+          <% else %>
+            <div id="editor"><%= @code %></div>
+          <% end %>
           <%= form_for(@practice, url: practice_url, remote: true) do |f| %>
             <div class="field">
-              <% if @code.nil? %>
-                <%= f.text_area :code, tabindex: "1", spellcheck: "false",
-                                       placeholder: "Type code here, then click Evaluate." %>
-              <% else %>
-                <%= f.text_area :code, tabindex: "1", spellcheck: "false" %>
-              <% end %>
+                <%= f.text_area :code %>
             </div>
             <div class="pull-right">
               <%= f.submit "Evaluate", class: "btn btn-large btn-primary" %>
@@ -38,12 +38,15 @@ Speak.say_hello("Sam")
       </div>
     </div>
 
-    <script type="text/javascript">
-      $(function() {
-        $('textarea').autosize();
-        $('textarea')[0].focus();
-      });
-    </script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow_night_bright");
+    editor.getSession().setMode("ace/mode/ruby");
+    var textarea = $('textarea#practice_code').hide();
+    $('.new_practice').on('submit', function () {
+        textarea.val(editor.getSession().getValue());
+    });
+</script>
   </div>
 </div>
 
